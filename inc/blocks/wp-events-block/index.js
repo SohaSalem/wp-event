@@ -35,31 +35,30 @@
                         ),
                 el(InspectorControls, null,
                         el(TextControl, {
-                            label: __('Number of events', 'mycred-gutenberg'),
-                            help: __('The number of events to show.', 'mycred-gutenberg'),
+                            label: __('Number of events', 'wp-events'),
+                            help: __('The number of events to show.', 'wp-events'),
                             value: number_events,
                             onChange: setNumberEvents
                         }),
                         el(SelectControl, {
                             label: __('Order By', 'mycred-gutenberg'),
-                            help: __('The URL to attach the current users affiliate ID to. No ID is attached for visitors that are not logged in.', 'mycred-gutenberg'),
                             value: order_by,
                             options: [
                                 {
                                     value: 'ID',
-                                    label: 'Event ID'
+                                    label: __('Event ID', 'wp-events')
                                 },
                                 {
                                     value: 'title',
-                                    label: 'Event Title'
+                                    label: __('Event Title', 'wp-events')
                                 },
                                 {
                                     value: 'date',
-                                    label: 'Event Date'
+                                    label: __('Event Date', 'wp-events')
                                 },
                                 {
                                     value: 'name',
-                                    label: 'Event Slug'
+                                    label: __('Event Slug', 'wp-events')
                                 }
                             ],
                             onChange: setOrderBy

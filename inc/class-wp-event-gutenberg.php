@@ -25,14 +25,7 @@ final class Event_Gutenberg {
 
     public function load_modules() {
 
-        $mycred_modules = [
-            'wp-events-block'
-        ];
-
-
-        foreach ($mycred_modules as $mycred_module) {
-            require_once __DIR__ . "/blocks/$mycred_module/$mycred_module.php";
-        }
+        require_once __DIR__ . "/blocks/wp-events-block/wp-events-block.php";
     }
 
 }

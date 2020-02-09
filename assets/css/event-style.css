@@ -1,0 +1,33 @@
+.noThumb{
+    width:85px; 
+    height:45px; 
+    background-color:#000;
+    float:left; 
+    margin:0 12px 0 0;
+
+}
+ul.events-lists {
+    margin-top:10px;
+
+}
+ul.events-lists li{
+    margin:0 0 15px 0; 
+    list-style:none !important;
+    min-height:45px;
+    line-height:19px;
+
+}
+ul.events-lists li img{
+    float:left;
+    margin:0 12px 0 0;
+
+}
+ul.events-lists li a {
+    font-weight:bold;
+
+}
+ul.events-lists li span {
+    display:block; 
+    font-size:11px;
+
+}

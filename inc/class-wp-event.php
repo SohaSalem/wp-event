@@ -1,5 +1,4 @@
 <?php
-
 if (!class_exists('WP_EVENT_CPT')) {
 
     class WP_EVENT_CPT {
@@ -7,6 +6,8 @@ if (!class_exists('WP_EVENT_CPT')) {
         public function __construct() {
             add_action('init', array($this, 'wp_event_cpt'));
             add_action('admin_enqueue_scripts', array($this, 'wp_event_enqueue_scripts'));
+            add_action('wp_enqueue_scripts', array($this, 'wp_event_enqueue_style'));
+
             add_action('add_meta_boxes', array($this, 'wp_event_register_meta_boxes'));
             add_action('save_post', array($this, 'wp_event_save_metadata'), 10, 3);
         }
@@ -47,7 +48,7 @@ if (!class_exists('WP_EVENT_CPT')) {
                 'label' => __('Event', 'wp-events'),
                 'description' => __('Event Description', 'wp-events'),
                 'labels' => $labels,
-                'supports' => array('title', 'editor', 'thumbnail','excerpt'),
+                'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
                 'taxonomies' => array('category', 'places'),
                 'hierarchical' => false,
                 'public' => true,
@@ -73,6 +74,11 @@ if (!class_exists('WP_EVENT_CPT')) {
             wp_enqueue_style('wp-event-jquery-ui-style', WPE_PLUGIN_URL . '/assets/css/jquery-ui/jquery-ui.min.css');
 
             wp_enqueue_script('wp-event-settings', WPE_PLUGIN_URL . 'assets/js/admin/wp-event-settings-script.js', array('jquery', 'jquery-ui-datepicker'));
+        }
+
+        public function wp_event_enqueue_style() {
+
+            wp_enqueue_style('enqueue-event-style', WPE_PLUGIN_URL . 'assets/css/event-style.css');
         }
 
         public function wp_event_register_meta_boxes() {

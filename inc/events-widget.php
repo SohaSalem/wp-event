@@ -19,11 +19,16 @@ class Event_Widget extends WP_Widget {
         $sortby = (!empty($instance['sortby']) ) ? $instance['sortby'] : 'ID';
 
         $title = apply_filters('widget_title', $title);
+        $order = 'ASC';
 
+        if ($sortby == 'date') {
+            $order = 'DESC';
+        }
         $args_filter = array(
             'post_type' => 'event',
             'post_status' => 'publish',
             'orderby' => $sortby,
+            'order' => $order,
             'posts_per_page' => $number
         );
 
@@ -34,25 +39,10 @@ class Event_Widget extends WP_Widget {
         echo $args['before_widget'];
         ?>
         <div class="widget-header">
-            <h4 class="widgettitle"><?php echo $title ? $title : __('Events', 'wp-events') ?></h4>
+            <h4 class="widgettitle"><?php echo $title ?></h4>
         </div>
         <?php
-        $events = ' ';
-        $events .= '<div class="events-lists">';
-
-        while ($events_query->have_posts()) : $events_query->the_post();
-            $events .= '<div class="items">';
-            $events .= '<a href="' . get_permalink() . '">';
-            $events .= get_the_title();
-            $events .= get_the_post_thumbnail();
-            $events .= get_the_excerpt();
-            $events .= get_post_meta(get_the_ID(), 'wpe_end_date', TRUE);
-            $events .= '</a></div>';
-        endwhile;
-        wp_reset_postdata();
-        $events .= '</div>';
-        echo $events;
-//        include get_stylesheet_directory() . '/template-parts/home-interview-widget.php';
+        include WPE_PLUGIN_FILE . '/templates/event-widget.php';
     }
 
     public function form($instance) {
